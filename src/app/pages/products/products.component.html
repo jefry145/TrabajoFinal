@@ -1,0 +1,16 @@
+<div id="Product" class="row py-5 px-5 text-monospace">
+    <h2>Productos</h2>
+    <div id="cardPoke" class="card col-2" *ngFor="let elemet of Products ">  
+        <p id="title" class="text-center">{{elemet.product | uppercase}}</p>  
+        <img  src="{{elemet.img}}" alt="" >
+        <p  class="text-left">Cost : {{elemet.cost |currency}}</p> 
+        <p  class="text-center">Offer : {{elemet.ofert | currency}}</p>   
+        <button mat-stroked-button color="primary" routerLink="/DetailsProduct/{{elemet.id}}" >Details</button>
+        <button mat-stroked-button color="primary"(click)="openDialog()" >Cantidad</button>
+        <button mat-raised-button color="accent" (click)="anadircart(elemet)" >Add cart {{cantidad}}</button>
+                                         
+    </div>
+</div>
+
+
+                       

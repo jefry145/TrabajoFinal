@@ -1,0 +1,25 @@
+#navbar{
+    background: rgba(196, 255, 235, 0.945) !important;
+    box-shadow: inset 0px -2px 5px 2px rgb(137, 194, 170) ;
+}
+#button-menu{
+ color: rgb(20, 20, 20);
+}
+#button-navbar:focus{
+ background-color: rgba(212, 212, 212, 0.815);
+ box-shadow: 0px 0px 4px 1px rgb(231, 231, 231);
+
+}
+#navbar-header{
+    font-size: 40px;
+    font-weight: 600;
+    color: rgb(66, 66, 66);
+    margin: 5px 11px;
+}
+#button-header{
+    color: rgb(70, 70, 70);
+    background: rgb(167, 253, 217) !important;
+}
+.link{
+    margin: 5px;
+}

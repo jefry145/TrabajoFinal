@@ -1,0 +1,41 @@
+h2{
+    font-weight: 900;
+}
+#Product{
+    box-shadow: inset 0px 2px 4px 1px rgb(201, 201, 201) ;
+}
+#title{
+    font-weight: 900;
+    font-size: 17px;
+    background: rgb(255, 254, 254);
+    color: rgb(121, 196, 173);
+    border-radius: 20px;
+    margin: 7px 0;
+}
+h1{
+    font-weight: 900;
+    color: rgb(54, 54, 54);
+}
+input{
+    box-shadow: 2px 4px 8px 2px rgb(163, 163, 163);
+    color: rgb(97, 97, 97);
+    height: 50px;
+}
+input::placeholder{
+    color: rgb(148, 196, 176);
+}
+button{
+    box-shadow: 2px 1px 8px 2px rgba(211, 211, 211, 0.479);
+    font-weight: 600;
+    margin: 8px 0;
+}
+#cardPoke{
+
+ margin: 20px;
+ box-shadow: 2px 4px 8px 2px rgb(163, 163, 163);
+}
+img{
+    box-shadow: inset 2px 2px 8px 2px rgb(116, 179, 165);
+    margin: 15px 0;
+    background: rgb(222, 255, 238);
+}
