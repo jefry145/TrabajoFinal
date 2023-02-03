@@ -35,66 +35,29 @@ export class AboutproductComponent {
     this.Products =dataproducts
   })
 
-  this.ProductsData.getDataUser().subscribe(userdata =>{
-    this.Users = userdata
-  })
-
   this.rutaActiva.paramMap.subscribe(
     
     (paramMap: any) => {
       const{params} = paramMap
-  // console.log(params.id)
   this.codigo = params.id
 
     }
   );
  }
+//
 
 
-
+//TRAE EL ARRAY FILTRADO
  ngAfterViewChecked(){
   this.DataProduct=this.Products.filter((element: { id: number; }) => element.id == this.codigo)
  }
 //
 
-
-
-  //VALORES
-  Users!:User[];
-
-  Cart=[
-    {}
-  ]
-
-  cantidad!:number
-
-  UID!:string|undefined
-
-  //
-
- 
-
-  //FUNCION QUE AÑADE LA DATA A UNA COLECCION LLAMADA CARRITO 
-  anadircart(Product : Store){
-
-  
-      this.UID= this.Users[0].id
-  
-
-     this.Cart.push({Product, cantidad:this.userdata.Cantidad})
-     
-     this.ProductsData.addCart(this.Cart[1],this.UID)
-
-     this.routes.navigate(["/Cart"])
-
-     this._snackBar.open(`added article!`,`ok`)
-
-  }
-  //
-
-  //FUNCION QUE HABRE UN DIALOGO, QUE CAPTA EL VALOR CANTIDAD
-  openDialog(): void {
+  //FUNCION QUE HABRE UN DIALOGO, QUE CAPTA EL VALOR "DE PRODUCTO"
+  openDialog(Product : Store): void {
     this.dialog.open(DialogAboutComponent);
+    this.ProductsData.ProductoSeparado= Product
+
   }
   //
 
@@ -110,10 +73,34 @@ export class DialogAboutComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogAboutComponent>,
     private _snackBar: MatSnackBar,
-    private datauser:LoginDataService
+    private datauser:LoginDataService,
+    private ProductsData:DatabaseConectService,
+    private routes : Router,
   ) {}
+    //VALORES
 
-  //VALORES
+    Users!:User[];
+  
+    Cart=[
+      {}
+    ]
+  
+    UID!:string|undefined
+  
+    Product:any
+    //
+  
+   //TRAE LA DATA GUARDADA EN UN SERVICIO Y EL ID DE USERDATA
+    ngOnInit(){
+      this.ProductsData.getDataUser().subscribe(userdata =>{
+         this.Users = userdata
+       })
+       this.Product=this.ProductsData.ProductoSeparado
+     }
+    //
+
+
+  //VALOR CANTIDAD
 
   quantity!:number
 
@@ -125,13 +112,25 @@ export class DialogAboutComponent {
   }
   //
 
-  //PLASMA EL VALOR EN LA DATA DE SERVICIO
-  async onSubmit(){
-    this.datauser.Cantidad=this.quantity
-    this._snackBar.open(`Click in add cart!`,"ok");
-  }
-  //
 
-  //DIALOGO</>
+    //FUNCION QUE AÑADE LA DATA A UNA COLECCION LLAMADA CARRITO 
+    anadircart(){
+     
+      var totalcost:number = (parseFloat(this.Product.cost)*(parseFloat(this.Product.ofert)/100))
+ 
+      this.UID= this.Users[0].id
+    
+ 
+      this.Cart.push({Product:this.Product, cantidad:this.quantity , totalcost:totalcost || this.Product.cost})
+      
+      this.ProductsData.addCart(this.Cart[1],this.UID)
+ 
+      this.routes.navigate(["/Cart"])
+ 
+      this._snackBar.open(`added article!`,`ok`)
+ 
+   }
+    //DIALOGO</>
+   //
 
 }

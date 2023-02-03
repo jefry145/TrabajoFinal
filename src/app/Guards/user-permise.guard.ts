@@ -10,16 +10,15 @@ import { LoginDataService } from '../Services/login-data.service';
 export class UserPermiseGuard implements CanActivate {
   constructor(
     private dataUser:LoginDataService
+    
   ){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       //Verifica el estado de inicio de sesion
-      if (this.dataUser.validacionLogin === false) {
-        return false;
-      }else{
+          location.reload()
         return true;
-      }
+
       //
 
   }

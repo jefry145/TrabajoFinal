@@ -17,6 +17,7 @@ export class NavbarComponent {
   validLogin:boolean=true
   faultLogin:boolean=false
   UserID:any
+  ValidUser!:any
 
   constructor(
     private UserService:LoginDataService,
@@ -31,6 +32,8 @@ export class NavbarComponent {
       this.UserID=datauser
       console.log(this.UserID[0].id)
     })
+    this.DataService.getUserValid().subscribe(valid =>{
+      this.ValidUser = valid})
   }
   //
 
@@ -49,13 +52,15 @@ export class NavbarComponent {
 
   //Funcion que cierra la sesion del usuario
   logout(){
-    this.DataService.deletedCart(this.UserID[0].id)
     this.UserService.logout()
+    this.DataService.deletedValid(this.ValidUser[0].id)
+    this.DataService.deletedCart(this.UserID[0].id)
     this.UserService.validacionLogin=false
     this.validLogin= true
     this.UserService.validacionMaster=false
     this.faultLogin=false
     this.routes.navigate(["/Login"])
+   
     this._snackBar.open(`Se you later!`,`òk`)
   }
   //

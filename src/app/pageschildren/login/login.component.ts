@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { user } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -14,7 +15,7 @@ import { LoginDataService } from 'src/app/Services/login-data.service';
 export class LoginComponent {
 
   UserData!:User[]
-
+  ValidUser!:any
   constructor(
     private formBuilder : FormBuilder,
     private UserService : LoginDataService,
@@ -27,13 +28,17 @@ export class LoginComponent {
   public formLogin!: FormGroup;
 
   //TRAE LA DATA DE USUARIO PARA INICIALIZARLA
-  ngOnInit(): void {
+  ngOnInit() {
     
     this.DatabaseService.getDataUser().subscribe(data=>{
       this.UserData = data
     })
+    this.DatabaseService.getUserValid().subscribe(valid =>{
+      this.ValidUser = valid
+   
+    })
+    
 //
-
 
 //FORMULARIO Y VALIDACION DE DATOS
     this.formLogin = this.formBuilder.group({
@@ -41,18 +46,29 @@ export class LoginComponent {
       password: ["", [Validators.required, Validators.minLength(6)]],
     });
   }
+  
 //
 
+ngAfterViewChecked(){
+ 
+
+}
+
 //FUNCION QUE INICIA LA SESION DEL USUARIO Y GUARDA UNA COPIA EN LA BASE DE DATOS
+
   login(){
-    
+  
     this.UserService.login(this.formLogin.value)
     .then(response => {
           if(this.formLogin.value.email === "master@gmail.com" && this.formLogin.value.password === "123456"){
-            this.UserService.Valid(true, true)
+  
+            var user=({validacionUser:true , ValidacionMaster:true})
+            this.DatabaseService.addValidUser(user)
             
           }else{
-            this.UserService.Valid(true , false)
+            
+            var user=({validacionUser:true , ValidacionMaster:false})
+            this.DatabaseService.addValidUser(user)
           }
           this.DatabaseService.addUser(this.formLogin.value)
 

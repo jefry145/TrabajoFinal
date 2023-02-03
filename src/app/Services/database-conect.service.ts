@@ -14,7 +14,27 @@ export class DatabaseConectService {
     private firestore:Firestore
   ) { }
   
-//FUNCIONES PARA DATABASE EN FIREBASE USANDO FIRESTORE
+  ProductoSeparado:any
+//FUNCIONES PARA DATABASE EN FIREBASE USANDO FIRESTORE Validacion
+addValidUser(user:any){
+  const UserRef = collection(this.firestore, 'ValidUserData');
+  return addDoc(UserRef, user)    
+}
+//
+//FUNCION QUE TRAE LA DATA DE LA COLECCION ValidUserData
+getUserValid():Observable<User[]>{
+  const productsRef = collection(this.firestore, 'ValidUserData');
+  return collectionData(productsRef, {idField:'id'}) as Observable<User[]>
+}
+//
+
+//FUNCION QUE BORRA UN DOC DE LA COLECCION ValidUserData
+deletedValid(products:any){
+  const productsRef = doc(this.firestore, `ValidUserData/${products}`)
+  return deleteDoc(productsRef);
+}
+//
+
 
 //FUNCION QUE AÑADE UN USUARIO A UNA COLECCION USERDATA
 addUser(user:User){
@@ -22,6 +42,7 @@ addUser(user:User){
   return addDoc(UserRef, user)    
 }
 //
+
 
 //FUNCION QUE AÑADE UNA DATA A LA COLECCION CARRITO
 addCart(products:any,uid:any){

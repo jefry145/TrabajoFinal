@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword , signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { DatabaseConectService } from './database-conect.service';
 
 
 @Injectable({
@@ -10,10 +11,15 @@ validacionLogin!:boolean
 validacionMaster!:boolean
 
 
-Cantidad!:number
   constructor(
     private auth:Auth,
+    private datauservalid:DatabaseConectService,
+    
   ) { }
+ 
+  ngOnInit(){
+    
+  }
 //REGISTRO DE USUARIO A NUESTRO LOGIN DATA EN EL FIREBASE
   registerUser({email,password}:any){
     //console.log(email)
@@ -30,8 +36,8 @@ login({email,password}:any){
 
 //FUNCION QUE VERIFICA LOS VALORES SEGUN EL TIPO DE USUARIO LOGEADO
 Valid(validacion:boolean , validacionmaster:boolean){
-  this.validacionLogin = validacion
-  this.validacionMaster= validacionmaster
+  this.validacionLogin = validacion 
+  this.validacionMaster= validacionmaster 
 
 }
 //

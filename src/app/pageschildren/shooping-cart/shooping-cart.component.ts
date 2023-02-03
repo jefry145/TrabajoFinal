@@ -39,7 +39,7 @@ constructor(
 
       for (let i = 0; i < data.length; i++) {
     
-        this.totalcost += this.data[i].Product.cost * parseFloat(this.data[i].cantidad)
+        this.totalcost += this.data[i].totalcost * parseFloat(this.data[i].cantidad)
         this.total= this.totalcost 
       }
       

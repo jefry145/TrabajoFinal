@@ -6,8 +6,7 @@
         <p  class="text-left">Cost : {{elemet.cost |currency}}</p> 
         <p  class="text-center">Offer : {{elemet.ofert | currency}}</p>   
         <button mat-stroked-button color="primary" routerLink="/DetailsProduct/{{elemet.id}}" >Details</button>
-        <button mat-stroked-button color="primary"(click)="openDialog()" >Cantidad</button>
-        <button mat-raised-button color="accent" (click)="anadircart(elemet)" >Add cart {{cantidad}}</button>
+        <button mat-raised-button color="accent" (click)="openDialog(elemet)" >Add cart </button>
                                          
     </div>
 </div>

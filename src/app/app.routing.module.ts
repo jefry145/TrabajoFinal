@@ -18,7 +18,7 @@ import { BreakingpageComponent } from "./components/breakingpage/breakingpage.co
 
 
 const routes:Routes=[
-    {path : "Adminpage" , component : PageadminComponent,  ...canActivate(()=> redirectUnauthorizedTo(["/Home/products"])),
+    {path : "Adminpage" , component : PageadminComponent,  ...canActivate(()=> redirectUnauthorizedTo(["/Login"])),
       children:[
         {path : "datauser" , component : LoginUserDataComponent , ...canActivate(()=> redirectUnauthorizedTo(["/Home/products"]))},
         {path : "dataproduct" , component : ProductManageComponent , ...canActivate(()=> redirectUnauthorizedTo(["/Home/products"])),
@@ -37,7 +37,7 @@ const routes:Routes=[
 
     {path: "DetailsProduct/:id",component : AboutproductComponent},
 
-    {path: "Cart" , component : ShoopingCartComponent , ...canActivate(()=> redirectUnauthorizedTo(["/Home/products"]))},
+    {path: "Cart" , component : ShoopingCartComponent , ...canActivate(()=> redirectUnauthorizedTo(["/Login"]))},
 
     {path: "Login" , component : LoginComponent},
     

@@ -23,13 +23,13 @@
                 
                             <!-- Cost Column -->
                                     <ng-container matColumnDef="cost">
-                                        <th mat-header-cell *matHeaderCellDef>Cost </th>
-                                         <td mat-cell *matCellDef="let element"> {{element.Product.cost |currency}} </td>
+                                        <th mat-header-cell *matHeaderCellDef>Cost + Offer </th>
+                                         <td mat-cell *matCellDef="let element"> {{element.totalcost |currency}} </td>
                                     </ng-container>
                            <!-- Offer Column -->
                                     <ng-container matColumnDef="ofert">
-                                        <th mat-header-cell *matHeaderCellDef>Ofert </th>
-                                         <td mat-cell *matCellDef="let element"> {{element.Product.ofert|currency}} </td>
+                                        <th mat-header-cell *matHeaderCellDef>Offer </th>
+                                         <td mat-cell *matCellDef="let element"> {{element.Product.ofert}}% </td>
                                     </ng-container>
                 
                             <!-- Image Column -->
@@ -48,7 +48,7 @@
                              <!-- totalcost Column -->
                              <ng-container matColumnDef="TotalCost">
                                 <th mat-header-cell *matHeaderCellDef>Total Cost </th>
-                                <td mat-cell *matCellDef="let element">{{element.Product.cost * element.cantidad |currency}}</td>
+                                <td mat-cell *matCellDef="let element">{{element.totalcost * element.cantidad |currency}}</td>
                                     
                             </ng-container>
                 
